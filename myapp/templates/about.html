@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <title>About</title>
+    <style>
+       .dropbtn {
+background-color: transparent;
+background-repeat:no-repeat;
+border: none;
+cursor:pointer;
+overflow: hidden;  
+border-radius: 20px;
+color: white;
+padding: 22px;
+font-size: 16px;
+border: none;
+cursor: pointer;
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+.dropdown-content a {
+color: black;
+padding: 15px 18px;
+text-decoration: none;
+display: block;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+display: block;
+}
+
+.dropdown:hover .dropbtn {
+   background-color: #1B191B;
+  /* color: #FFF; */
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+      </style>
+</head>
+<body>
+        {% csrf_token %}
+        <div id="menu">
+            <ul>
+                 <li><a href="/home/">Home</a></li>
+                 <li><a href="/homeloan/" >HomeLoan</a></li>
+                 <li><a href="/emical/">Emicalculator</a></li>
+                 <li><a href="/about/" class="active">About</a></li>
+                 <li><div class="dropdown">
+                  <button class="dropbtn"><b>Login</b><i class="fa fa-caret-down"></i></button>
+                  <div class="dropdown-content" style=" right: 0;">
+                  <a href="/homeloan/successfull/">Admin</a>
+                  <a href="/User/">User</a>
+                  </div>
+                </div></li>
+            </ul>
+       </div>
+
+
+   <div class="card1">
+    <img src="/static/img.jpg" alt="Avatar" style="width:100%">
+    <div class="container1">
+      <h4><b>Barathraj S</b></h4> 
+      <p>Developer</p> 
+    </div>
+  </div>
+
+
+  <div class="card2">
+    <img src="/static/img.jpg" alt="Avatar" style="width:100%">
+    <div class="container2">
+      <h4><b>Navin M</b></h4> 
+      <p>Developer</p> 
+    </div>
+  </div>
+</body>
+</html>

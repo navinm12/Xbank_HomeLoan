@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Accounts</title>
+    <link rel="stylesheet" href="{% static 'css/homeloan.css' %}">
+    <style>
+
+      </style>
+</head>
+<body>
+        
+        <!-- <img src="{% static "bg.png" %}" alt="image here" style="max-width:100%" style="max-height: 80%"> -->
+        <div id="menu">
+            <ul>
+                 <li><a href="/home/">Home</a></li>
+                 <li><a href="/homeloan/" class="active">HomeLoan</a></li>
+                 <li><a href="/emical/">Emicalculator</a></li>
+                 <li><a href="/about/">About</a></li>
+                 <li><div class="dropdown">
+                  <button class="dropbtn"><b>Login</b><i class="fa fa-caret-down"></i></button>
+                  <div class="dropdown-content" style=" right: 0;">
+                  <a href="/homeloan/successfull/">Admin</a>
+                  <a href="/User/">User</a>
+                  </div>
+                </div></li>
+            </ul>
+       </div>
+<div class="login-box">
+        <!-- <img src="avatar.png" class="avatar"> -->
+            <h1>Transaction Details</h1>
+                <form class="homeloan" name="homeloan" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                <p>Name</p>
+                <input type="text" name="name" placeholder="Enter name">
+                <p>Date of Birth</p>
+                <input type="text" name="DOB" placeholder="DD/MM/YY">
+                <p>Salary</p>
+                <input type="text" name="Salary" placeholder="Enter Salary">
+                <p>Documentid</p>
+                <input type="text" name="Documentid" placeholder="Enter Documentid">
+                <p>Estimatiion</p>
+                <input type="text" name="Estimation" placeholder="Enter Estimatiion">
+                <p>Pan Card Number</p>
+                <input type="text" name="Pannumber" placeholder="Enter Pan number">
+                <p><input type="file" name="myFile"><p>
+                
+                <!-- <input type="submit" name="submit" value="submit"> -->
+                   
+                <button type="submit" id=myBtn  value="Submit" name="submit" class="button">Submit</button>
+                {% if verifys == "Approved" %}
+                <p><font color="red">* </font>{{verifys}}<p>
+        
+                <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+                <a href="/homeloan/successfull/" name="submit" class="button"  style="margin-top: -35px; margin-left: 60%;">confirmation</a>
+                {% else %}
+                <p><font color="red">* </font>{{verifys}}<p>
+                <!-- <button type="submit" id=myBtn1  value="Submit" name="submit" class="button"  style="margin-top: -35px; margin-left: 60%;">confirmation</button> -->
+                {% endif %} 
+                </form>
+                
+            </div>
+             <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Transaction is in process please wait..</p>
+                    </div>
+
+            <script>
+                    // Get the modal
+                    
+                    var modal = document.getElementById("myModal");
+                    
+                    // Get the button that opens the modal
+                    var btn = document.getElementById("myBtn");
+                    
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    
+                    
+                    // When the user clicks the button, open the modal 
+                    btn.onclick = function() {
+                      modal.style.display = "block";
+
+                    }
+                    
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                      modal.style.display = "none";
+                    }
+                    // fun1(){
+                    //   var fun1 =document.getElementById("myBtn1");
+                    //   if (fun1.value=="Submit") fun1.value = "Conformation";
+                    // }
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                      if (event.target == modal) {
+                        modal.style.display = "none";
+                        
+                      }
+                    }
+                    // function visitPage(){
+                    //          window.location='http://127.0.0.1:8000/homeloan/successfull';
+                    //           }
+                    </script>
+                
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/successfull.css' %}">
+    <title>Home</title>
+    <style>
+        body{
+            text-align:center;
+        }
+        .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 600px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+        </style>
+</head>
+<style>
+    .login-box{
+        width: 500px;
+        height: 800px;
+    }
+    </style>
+
+<body>
+    <div id="menu">
+        <ul>
+             <li><a href="/home/" >Home</a></li>
+             <li><a href="/homeloan/">HomeLoan</a></li>
+             <li><a href="/emical/"  >Emicalculator</a></li>
+             <li><a href="/about/">About</a></li>
+        </ul>
+   </div>
+   <form class="successfull" name="successfull" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <h1><font color="white">Transcation successfull !! </font></h1>
+   
+   <div class="login-box">
+          <!-- <img src="avatar.png" class="avatar"> -->
+              <h1>Loan has been sanctioned!</h1><br><br>
+                  <p>Name:</p><br>
+                             <p clas="Rdetails">{{ Name }}</p><br>
+                  <p>Date of Birth:</p><br>
+                             <p>{{ PanDOB }}</p><br>
+                  <p>Salary:</p><br>
+                            <p>₹ &nbsp; {{ Salary }}/-</p><br>
+                  <p>Documentid:</p><br>
+                             <p>{{ Documentid }}</p><br>
+                  <p>Estimatiion:</p><br>
+                            <p>₹ &nbsp; {{ Estimation }}/-</p><br>
+                    <p>PanNumber:</p><br>
+                            <p>{{ PanID }}</p><br>
+                <!-- <button type="Submit" value="Submit" name="Submit" class="button" >Get Hashid</button>  -->
+                <div class="tooltip"><p><font color="#4CAF50">Get Hashid</font></p>
+                        <span class="tooltiptext">{{ Hashid }}  </span>
+                      </div>
+                <!-- {% if submitbutton == "Submit" %} 
+                    <p>Hashid: </p><br>
+                            <p>{{ Hashid }}</p>
+                {% endif %}  -->
+              </div>
+          </form>
+</body>
+</html>

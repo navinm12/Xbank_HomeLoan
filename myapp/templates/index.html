@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+        <div id="menu">
+                <ul>
+                     <li><a href="/home/" >Home</a></li>
+                     <li><a href="/homeloan/" >HomeLoan</a></li>
+                     <li><a href="/emical/" class="active">Emicalculator</a></li>
+                     <li><a href="/about/" >About</a></li>
+                     <li><div class="dropdown">
+                      <button class="dropbtn"><b>Login</b><i class="fa fa-caret-down"></i></button>
+                      <div class="dropdown-content" style=" right: 0;">
+                      <a href="/adminaccount/">Admin</a>
+                      <a href="/User/">User</a>
+                      </div>
+                    </div></li>
+                </ul>
+           </div>
+   <div>
+    <!-- <div style="margin-left:25%;padding:1px 16px;height:1000px;"> -->
+        <div class="login-box">
+    <div>
+      <form class="formpage" name="form" method="post">
+        {% csrf_token %}
+          {{ form }}
+          {{ table }}
+          <label><b>Loan Amount</b></label>
+          <input type="text" id="loanamt" name="loanamt" placeholder="Loan Amount should be greater than  2,00,000">
+    <br>
+    <br>
+      <button type="Submit" value="Submit" name="Submit" class="button" >Submit</button> 
+      </form>
+    </div>
+
+    {% if submitbutton == "Submit" %} 
+    {% if valid == "valided" %}
+    <h5>Repayment Schedule </h5>
+    <h5>These amounts are indicative only. Please get in touch with us for exact details </h5>
+    <div>
+        <table>
+            <tr class="tablehead">
+                <th>Months</th>
+                <th>Opening Balance</th>
+                <th>EMI</th>
+                <th>Interest</th>
+                <th>Principal</th>
+                <th>Closing Balance</th>
+        </tr>
+            {% for p,q,r,s,t,u in zipped %}
+                <tr>
+                    <td>{{ p }}</td>
+                    <td>{{ q }}</td>
+                    <td>{{ r }}</td>
+                    <td>{{ s}}</td>
+                    <td>{{ t }}</td>
+                    <td>{{ u }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+</div>
+<form method="POST" action="/emical/">
+    {% csrf_token %}
+    {{ form }}
+    <a href="/emical/" class="buttonR"  id="Reset" value="Reset" name="Reset" >Reset</button> 
+<!-- <button type="Submit" class="buttonR"  id="Reset" value="Reset" name="Reset" >Reset</button>  -->
+</form>
+{% else %}
+<h3><font color="red">* </font>Entered Loan amount is not Valid for providing Loan</h3> 
+{% endif %} 
+{% endif %}
+      </div>
+   </div>
+</body>
+</html>

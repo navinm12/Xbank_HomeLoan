@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Accounts</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+        
+        <!-- <img src="{% static "bg.png" %}" alt="image here" style="max-width:100%" style="max-height: 80%"> -->
+        <div class="container">
+    <form class="homeloan" name="homeloan" method="post">
+            {% csrf_token %}
+            {{ form }}
+                
+                  <label><b><font color="white">Name:</b></font></label>
+                  <input type="text" id="name" name="name">
+                  <label><font color="white"><b>Salary</b></font></label>
+                  <input type="text" id="Salary" name="Salary">
+                  <label><font color="white"><b>Documentid</b></font></label>
+                  <input type="text" id="documentid" name="documentid">
+                  <label><font color="white"><b>Estimatiion</b></font></label>
+                  <input type="text" id="Estimatiion" name="estimation">
+                  <br>
+      <button type="Submit" value="Submit" name="Submit" class="button" >Submit</button>
+    </form>
+</div>
+        
+</body>
+</html>
+
+
+
+<table>
+                {% for p, q in products, quantity %}
+                    <tr>
+                        <td>{{ p.p_name }}</td>
+                        <td>{{ q }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+
+
+
+
+
+
+
+def startEthereum(request):
+    Name = request.POST.get('name')
+    Salary = request.POST.get('Salary')
+    Documentid = request.POST.get('Documentid')
+    Estimation = request.POST.get('Estimation')
+    Salary=int(Salary)
+    Documentid=int(Documentid)
+    Estimation=int(Estimation)
+
+    content={'Name':Name,'Salary':Salary," Documentid": Documentid,'Estimation':Estimation,}
+    return render(request,'homeloan.html',content)
