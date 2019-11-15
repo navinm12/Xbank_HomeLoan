@@ -1,0 +1,85 @@
+Django
+•	Pip installation 
+pip3 install Django
+•	Project creation
+ django-admin startproject DjangoForms
+•	Changing the directory to djangoForms(Name of the Django projects) 
+ cd DjangoForms
+•	To Run the server 
+python manage.py runserver
+•	creating app inside the project directory 
+django-admin startapp responseapp
+•	Changing the directory to responseapp(Name of the app) 
+ 			 cd responseapp 
+•	in settings.py add the app name and enter the comma
+example:
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp'
+]
+•	in the urls.py(project directory) change to the following 
+•	from django.contrib import admin
+•	from django.urls import path,include
+•	
+•	urlpatterns = [
+•	    path('admin/', admin.site.urls),
+•	    path('',include('myapp.urls')),
+•	]
+
+•	Copy the urls.py to the app and paste it 
+•	from django.urls import path
+•	from . import views
+•	urlpatterns = [
+•	    path('',views.home),
+•	]
+ 
+Inside the app directory create a folder name static inside that play all the image files and add Loadng css to html
+•	{% load static %}
+•	<link rel="stylesheet" href="{% static'css/adminaccount.css' %}">
+•	
+
+•	Defnitng the function
+
+
+•	The form should be in post method 
+<form class="homeloan" name="homeloan" method="post">
+  {% csrf_token %} {{ form }}<form>
+•	Getting input in html 
+<input type="text" name="name" placeholder="Enter name" required>
+
+•	Getting input file
+•	<input type="file" name="myFile">
+
+•	If condition
+•	         {% if verifys == "Approved" %}
+•	                <p><font color="red">* </font>{{verifys}}<p>
+•	        
+<a href="/homeloan/successfull/" name="submit" class="button"confirmation</a>
+            {% else %}
+<p><font color="red">* </font>{{ verifys }}<p>
+                {% endif %} 
+
+•	Defining the function in views.py which is denoted in urls.py in app directory
+Return should be render with the help of request from the html
+def startEthereum(request):
+    		return render(request,'homeloan.html')
+
+•	Requesting session from the one page and passing values to the another page 
+•	Name= request.session['Name']
+•	Salary= request.session['Salary']
+
+•	Getting the session information and passing it 
+•	request.session['Name'] =  Name
+•	request.session['Salary'] =  Salary
+
+
+•	Getting the information from the input fields from html
+•	Name = request.POST.get('name')
+•	Salary = request.POST.get('Salary')
+
+
