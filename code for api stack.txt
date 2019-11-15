@@ -1,0 +1,21 @@
+message=Map();
+if(arguments =="")
+{
+message.put("text", "Invalid input.usage \"\stackoverflow content editable disabled after long time usage\"")
+return message;
+}
+response=getUrl("https://api.stackexchange.com/2.2/search/advanced?sor=relevance&q="+encodeUrl(arguments)+"&pagesize=5&site=stackoverflow");
+items=response.get("items");
+info items ;
+text="";
+count=0;
+for each item in items
+{
+count=count+1;
+title=item.get("title");
+link=item.get("link");
+text=text+count+".["+title+"]("+link+")\n";
+}
+message=Map();
+message.put("text","Few response for your question:"+text);
+return message;
