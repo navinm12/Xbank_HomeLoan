@@ -1,0 +1,96 @@
+pragma solidity 0.4.25;
+
+contract motortrade
+{
+    struct deptmotor{
+        string name;
+        uint age;
+        uint documentid;
+        uint regnumber;
+        uint costvehicle;
+        uint datelic;
+        string selforthird;
+        uint taxfee;
+    }
+    
+    struct taxautho{
+        uint taxfee;
+        string taxpayer;
+    }
+    
+    struct trafficdept{
+        uint regnumber;
+        uint violationid;
+        string violationhappen;
+    }
+    
+    struct pollution
+    {
+        uint vehicleid;
+        string vname;
+    }
+    
+    struct insurance
+    {
+        uint costvehicle;
+        uint datelic;
+        uint violationscore;
+        string selforthird;
+    }
+    deptmotor [] public dp;
+ 
+    mapping (address => deptmotor) dpmotor;
+    mapping (address => taxautho) dptax;
+    mapping (address => trafficdept) dptraffic;
+    mapping (address => pollution) dppollution;
+    mapping (address => insurance) dpinsurance;
+
+    
+    function Deptofmotor(uint _regnumber,uint _documentid,string _name,uint _age,uint _vehiclecost,uint _licdate,string _third,uint _taxfee) public{
+        dpmotor[msg.sender].regnumber=_regnumber;
+        dpmotor[msg.sender].documentid=_documentid;
+        dpmotor[msg.sender].name=_name;
+        dpmotor[msg.sender].age=_age;
+        dpmotor[msg.sender].costvehicle=_vehiclecost;
+        dpmotor[msg.sender].datelic=_licdate;
+        dpmotor[msg.sender].selforthird=_third;
+        dpmotor[msg.sender].taxfee=_taxfee;
+        
+    }
+    
+    function Accessdptofmotor() view public returns(uint,uint,string,uint,uint,uint,string){
+        return( dpmotor[msg.sender].regnumber,dpmotor[msg.sender].documentid,dpmotor[msg.sender].name, dpmotor[msg.sender].age,dpmotor[msg.sender].costvehicle,dpmotor[msg.sender].datelic,dpmotor[msg.sender].selforthird);
+    }
+    
+ 
+    function toinsurance(address _reciver) public{
+        dpinsurance[_reciver].costvehicle= dpmotor[msg.sender].costvehicle;
+        dpinsurance[_reciver].datelic=dpmotor[msg.sender].datelic;
+        dpinsurance[_reciver].selforthird=dpmotor[msg.sender].selforthird;
+    }   
+    
+    function accissurance () view public returns(uint,uint,string){
+        
+           return(dpinsurance[msg.sender].costvehicle,dpinsurance[msg.sender].datelic,dpinsurance[msg.sender].selforthird); 
+    }
+    function totax(address _taxrece) public{
+        dptax[_taxrece].taxfee=dpmotor[msg.sender].taxfee;
+        dptax[_taxrece].taxpayer=dpmotor[msg.sender].name;
+    }
+    
+    function acctax() view public returns(string,uint){
+        return (dptax[msg.sender].taxpayer,dptax[msg.sender].taxfee);
+    }
+    function tradep (address _trafdept,string _violation) public{
+        dptraffic[_trafdept].regnumber=dpmotor[msg.sender].regnumber;
+        dptraffic[_trafdept].violationhappen=_violation;
+    }
+    
+    function acctdepartment() view public returns(uint,string){
+        return (dptraffic[msg.sender].regnumber,dptraffic[msg.sender].violationhappen);
+    }
+    
+    
+    
+    
+}
